@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/nicksite.csproj",
+  "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/nicksite.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -14392,53 +14392,53 @@
   "RootNamespace": "nicksite",
   "Documents": [
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/Home/Contact.cshtml",
-      "TargetPath": "Views\\Home\\Contact.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/Shared/_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/Shared/Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/Home/Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/Home/About.cshtml",
-      "TargetPath": "Views\\Home\\About.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/Shared/_Layout.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/_ViewStart.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Home/Projects.cshtml",
+      "TargetPath": "Views\\Home\\Projects.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Shared/Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Home/About.cshtml",
+      "TargetPath": "Views\\Home\\About.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Home/Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/Views/Home/Projects.cshtml",
-      "TargetPath": "Views\\Home\\Projects.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Home/Contact.cshtml",
+      "TargetPath": "Views\\Home\\Contact.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Home/Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
     }
   ],
