@@ -16,7 +16,7 @@ html, .fullheight {
   transition: all 0.3s linear;
 }
 
-.zone:hover {
+.zone {
   box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
 }
 
@@ -32,13 +32,13 @@ html, .fullheight {
   font-family: futura;
   padding-top: 20px;
   font-size: 20px;
-  background-color: #f8f9c9;
+  background-color: #c2c2c2;
   height: 100%;
 }
 
 .navbar-custom {
   font-family: futura;
-  background-color: #fdfea4;
+  background-color: #c2c2c2;
   font-size: 30px;
   padding-left: 55px;
   padding-right: 55px;

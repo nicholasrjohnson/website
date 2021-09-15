@@ -2,7 +2,8 @@ namespace website.Models
 {
     public class Email
     {
-        string body { get; set; }
-        string from Email { get; set; }
+        string Body { get; set; }
+        string ToAddress { get; set; }
+        string FromAddress { get; set; } 
     }
 }

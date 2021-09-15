@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hZxwKf/JxAhlcKoCrAp2cKNYVMTyeJbRTWoJapIHx3x9CXOUGtzo14/uj02H5hi0yirR/BJnHJo58JgX+8yDPw==",
+  "dgSpecHash": "NUvLykz5SJbe44nKWSajlRrCMK6YssTPmQ8qdbOjaQlaVbbt9Dd1d9iuVR7Xp5O6ByYRSs57CPbhP9XuVd45AQ==",
   "success": true,
-  "projectFilePath": "/Users/nicho/Desktop/Projects/GIT/nicksite/nicksite.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/nicho/Desktop/Projects/GIT/website/nicksite.csproj",
+  "expectedPackageFiles": [
+    "/Users/nicho/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
   "logs": []
 }
