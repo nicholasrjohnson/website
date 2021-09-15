@@ -4,7 +4,7 @@
 <div class="jumbotron jumbotron-fluid zone" style="font-family: merriweather; background-color: #76a3fb;margin-top: 20px; padding: 20px;"> 
   <h2 id="jumbo1">Projects</h2>
   <h5 id="jumbo2"class="text-left">I work on various projects from using Java to C#. My main focus lately has been .NET core and Angular web applications. As I have done things in the private and government sector before, I am now developing my own portfolio. I have many ideas I would like to share and I'm filling my GitHub repositories with code. <a href="https://github.com/nicholasrjohnson">github.com/nicholasrjohnson.com</a></h5>
-  <img id="jumbo3" src="~\images\machine.jpg" asp-append-version="true"/>
+  <img id="jumbo3" src="~/images/machine.jpg" asp-append-version="true"/>
 </div>
 <div class="row-md-15 text-center"> 
   <div class="col">
@@ -15,15 +15,19 @@
         <p><a class="btn btn-default" href="https://github.com/nicholasrjohnson/vesuvius" role="button">GitHub Link&raquo;</a></p>
       </div>
       <div class="col zone" style="background-color: #ffffff; margin: 10px; padding: 15px;">
-        <h2 style="color: #111111">Zoom Extensions</h2>
-        <p style="color: #222222; font-family: merriweather;">I am working on a couple of Zoom extensions using their API. This is just in the preliminary stages. More info to come.</p>
-        <p><a class="btn btn-default" href="projects.html" role="button">Coming Soon&raquo;</a></p>
+        <h2 style="color: #111111">Frenetic</h2>
+        <p style="color: #222222; font-family: merriweather;">I am working on a simple Blog web app that uses Django.</p>
+        <p><a class="btn btn-default" href="https://github.com/nicholasrjohnosn/frenetic" role="button">GitHub Link&raquo;</a></p>
       </div>
       <div class="col zone" style="background-color: #ffffff; margin: 10px; padding: 15px;">
-        <h2 style="color: #111111">Project</h2>
-        <p style="color: #222222; font-family: merriweather">Coming Soon...</p>
-        <p><a class="btn btn-default" href="https://github.com/nicholasrjohnson" role="button">My GITHub&raquo;</a></p>
+        <h2 style="color: #111111">Signal R</h2>
+        <p style="color: #222222; font-family: merriweather">In addition, one of my projects has been developed as a testing ground for ideas with Signal R at work. It alters a Bar Graph in realtime using alteration in a SQL Server table.</p>
+        <p><a class="btn btn-default" href="https://github.com/nicholasrjohnson/champsignalr" role="button">GITHub Link&raquo;</a></p>
       </div>
     </div>
   </div>
 </div>
+
+@section Scripts {
+  <script src="~/js/projects.js" asp-append-version="true"></script>
+}

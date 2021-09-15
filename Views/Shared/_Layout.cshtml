@@ -17,9 +17,7 @@
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-TZ3SFN7');</script>
-    @RenderSection("Scripts", required: false)
-  <style>
-  </style>
+  @RenderSection("Scripts", required: false)
 </head>
 <body>
 	<!-- Google Tag Manager (noscript) -->
@@ -35,10 +33,10 @@
          </div>
          <div class="collapse navbar-collapse" id="myNavbar">
            <ul class="navbar-nav d-flex mb-auto mt-0 ml-auto">
-             <li class="nav-item"><a id="homeIdTop" onclick="hightlightMenuItems(this.id, 'homeIdSide')" style="color: #76a3fb" class="nav-link py-0 linktext" href="/Home/Index">Home</a></li>
-             <li class="nav-item"><a id="aboutIdTop" onclick="highlightMenuItems(this.id, 'aboutIdSide')" class="nav-link py-0 linktext" href="/Home/About">About</a></li>
-             <li class="nav-item"><a id="projectsIdTop" onclick="hightlightMenuItems(this.id, 'projectsIdSide'" class="nav-link py-0 linktext" href="/Home/Projects">Projects</a></li>
-             <li class="nav-item"><a cid="projectsIdTop" onclick="hightlightMenuItems(this.id, 'projectsIdSide'" lass="nav-link py-0 linktext" href="/Home/Contact">Contact</a></li>
+             <li class="nav-item"><a id="homeIdTop" class="nav-link py-0" href="/Home/Index">Home</a></li>
+             <li class="nav-item"><a id="aboutIdTop" class="nav-link py-0" href="/Home/About">About</a></li>
+             <li class="nav-item"><a id="projectsIdTop" class="nav-link py-0" href="/Home/Projects">Projects</a></li>
+             <li class="nav-item"><a id="contactIdTop" class="nav-link py-0" href="/Home/Contact">Contact</a></li>
            </ul>
            <ul class="nav bg-dark navbar-dark navbar-right">
            </ul>
@@ -49,12 +47,12 @@
 
   <div class="row">
     <div class="col-sm-2 sidenav fullheight container-fluid text-center zone" style="margin-top:20px; padding:15px;">
-      <p><a cid="homeIdSide" onclick="hightlightMenuItems(this.id, 'homeIdTop'" lass="linktext" href="/Home/Index">Home</a></p>
-      <p><a id="aboutIdSide" onclick="hightlightMenuItems(this.id, 'aboutIdTop'" class="linktext" href="/Home/About">About</a></p>
-      <p><a id="projectsIdSide" onclick="hightlightMenuItems(this.id, 'projectsIdTop'" class="linktext" href="/Home/Projects">Projects</a></p>
+      <p><a id="homeIdSide" href="/Home/Index">Home</a></p>
+      <p><a id="aboutIdSide" href="/Home/About">About</a></p>
+      <p><a id="projectsIdSide" href="/Home/Projects">Projects</a></p>
       <p><a class="linktext" href="https://blog.nicholasrjohnson.com">Blog</a></p>
       <p><a class="linktext" href="/resources/NicholasRJohnsonResume.docx" download>Resume</a></p>
-      <p><a id="contactIdSide" onclick="hightlightMenuItems(this.id, 'contactIdTop'" class="linktext" href="/Home/Contact">Contact</a></p>
+      <p><a id="contactIdSide" href="/Home/Contact">Contact</a></p>
       <div class="container">
         <form class="form-signin">
           <label for="inputEmail" class="sr-only">Email address</label>
@@ -76,7 +74,7 @@
         </main>
 
         <footer class="container-fluid text-center" >
-        <p>&#x00A9;202 Nicholas Johnson, All rights reserved</p>
+        <p>&#x00A9;2021 Nicholas Johnson, All rights reserved</p>
       </footer>
     </div>
   </div>

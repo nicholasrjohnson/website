@@ -4,7 +4,7 @@
       <div class="jumbotron jumbotron-fluid zone" style="font-family: merriweather; background-color: #76a3fb;margin-top: 20px; padding: 20px;">
           <h2 id="jumbo1">Introduction</h2>
           <h5 id="jumbo2"class="text-left">I am a highly dedicated and experienced software engineer and consultant with 9 years of increasing responsibilty in warehouse voice solutions, defense readiness applications and customer sales software support and development roles with a wide variety of development tools including C#.NET and Angular. I am seeking and aspire to assist with customer satisfaction by creating high quality products using the SDLC.</h5>
-          <img id="jumbo3" src="~\images\mtwashington.jpg"/>
+          <img id="jumbo3" src="~/images/mtwashington.jpg" asp-append-version="true"/>
       </div>
       <div class="row-md-15 text-center">
         <div class="col">
@@ -17,7 +17,7 @@
             <div class="col zone" style="background-color: #ffffff; margin: 10px; padding: 15px;">
               <h2 style="color: #111111">Computers</h2>
               <p style="color: #222222; font-family: merriweather;">I love computers. Ever since I was young, I have been involved with computing in different ways. My father had a technology lab back in the 80s at his middle school where he taught. As soon as he could, he brought me there, and I fell in love. Consequently, I went RIT for my undergrad in 2000 and was an active member of Computer Science House.</p>
-              <p><a class="btn btn-default" href="projects.html" role="button">Check out my projects&raquo;</a></p>
+              <p><a class="btn btn-default" href="/Home/Projects" role="button">Check out my projects&raquo;</a></p>
             </div>
             <div class="col zone" style="background-color: #ffffff; margin: 10px; padding: 15px;">
               <h2 style="color: #111111">Music</h2>
@@ -27,3 +27,7 @@
           </div>
         </div>
       </div>
+
+      @section Scripts {
+        <script src="~/js/index.js" asp-append-version="true"></script>
+      }
