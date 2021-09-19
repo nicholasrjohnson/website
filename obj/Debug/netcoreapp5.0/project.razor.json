@@ -15608,6 +15608,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/InnerSanctum/InnerSanctumIndex.cshtml",
+      "TargetPath": "Views\\InnerSanctum\\InnerSanctumIndex.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Home/Projects.cshtml",
       "TargetPath": "Views\\Home\\Projects.cshtml",
       "FileKind": "mvc"
