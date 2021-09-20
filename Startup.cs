@@ -7,8 +7,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+
+using nicksite.Data;
 
 namespace nicksite
 {
@@ -24,6 +30,12 @@ namespace nicksite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<WebsiteIdentityDbContext>(options =>
+                    options.UseMySQL(
+                        Configuration.GetConnectionString("Membership")));
+
+                services.AddDefaultIdentity<WebsiteIdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<WebsiteIdentityDbContext>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 

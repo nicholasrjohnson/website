@@ -1,0 +1,8 @@
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/nicksite.csproj.AssemblyReference.cache
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/nicksite.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/nicksite.AssemblyInfoInputs.cache
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/nicksite.AssemblyInfo.cs
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/nicksite.csproj.CoreCompileInputs.cache
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/nicksite.MvcApplicationPartsAssemblyInfo.cache
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/nicksite.RazorAssemblyInfo.cache
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/nicksite.RazorAssemblyInfo.cs

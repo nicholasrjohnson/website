@@ -38,13 +38,25 @@
         "net5.0": {
           "targetAlias": "netcoreapp5.0",
           "dependencies": {
-            "microsoft.entityframeworkcore": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.10, )"
             },
-            "mysqlconnector": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[1.3.12, )"
+              "version": "[5.0.10, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Mysql.Data.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.22, )"
             }
           },
           "imports": [

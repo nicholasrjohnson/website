@@ -1,9 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -28,7 +33,7 @@ public static class KestrelServerOptionsExtensions
     public static void ConfigureEndpoints(this KestrelServerOptions options)
     {
         var configuration = options.ApplicationServices.GetRequiredService<IConfiguration>();
-        var environment = options.ApplicationServices.GetRequiredService<IHostingEnvironment>();
+        var environment = options.ApplicationServices.GetRequiredService<Microsoft.Extensions.Hosting.IHostingEnvironment>();
 
         var endpoints = configuration.GetSection("HttpServer:Endpoints")
             .GetChildren()
@@ -74,7 +79,7 @@ public static class KestrelServerOptionsExtensions
         }
     }
 
-    private static X509Certificate2 LoadCertificate(EndpointConfiguration config, IHostingEnvironment environment)
+    private static X509Certificate2 LoadCertificate(EndpointConfiguration config, Microsoft.Extensions.Hosting.IHostingEnvironment environment)
     {
         if (config.StoreName != null && config.StoreLocation != null)
         {
@@ -113,4 +118,5 @@ public class EndpointConfiguration
     public string StoreLocation { get; set; }
     public string FilePath { get; set; }
     public string Password { get; set; }
+}
 }
