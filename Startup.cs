@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
@@ -36,7 +37,7 @@ namespace website
             services.AddDefaultIdentity<ApplicationIdentityUser>()
                     .AddDefaultTokenProviders();
 
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddMvc().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +53,6 @@ namespace website
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             }
             app.UseStaticFiles();
-
-            app.UseMvc();
 
             app.UseRouting();
 

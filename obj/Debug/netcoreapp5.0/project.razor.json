@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/nicksite.csproj",
+  "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/website.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15600,7 +15600,7 @@
     ],
     "CSharpLanguageVersion": 900
   },
-  "RootNamespace": "nicksite",
+  "RootNamespace": "website",
   "Documents": [
     {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Lockout.cshtml",
@@ -15613,8 +15613,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/_Layout.cshtml",
+      "TargetPath": "Views\\Admin\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/EnableAuthenticator.cshtml",
+      "TargetPath": "Views\\Admin\\EnableAuthenticator.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/ConfirmEmailChange.cshtml",
       "TargetPath": "Views\\Account\\ConfirmEmailChange.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/ShowRecoveryCodes.cshtml",
+      "TargetPath": "Views\\Admin\\ShowRecoveryCodes.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15623,13 +15638,33 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/ResetAuthenticator.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\ResetAuthenticator.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/PersonalData.cshtml",
+      "TargetPath": "Views\\Admin\\PersonalData.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/_StatusMessage.cshtml",
+      "TargetPath": "Views\\Admin\\_StatusMessage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/ChangePassword.cshtml",
+      "TargetPath": "Views\\Admin\\ChangePassword.cshtml",
       "FileKind": "mvc"
     },
     {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/ResetAuthenticator.cshtml",
+      "TargetPath": "Views\\Admin\\ResetAuthenticator.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/Email.cshtml",
+      "TargetPath": "Views\\Admin\\Email.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15648,23 +15683,13 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/ExternalLogins.cshtml",
+      "TargetPath": "Views\\Admin\\ExternalLogins.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/ForgotPassword.cshtml",
       "TargetPath": "Views\\Account\\ForgotPassword.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/EnableAuthenticator.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\EnableAuthenticator.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/ShowRecoveryCodes.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\ShowRecoveryCodes.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/_ViewImports.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15678,18 +15703,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/ChangePassword.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\ChangePassword.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/DownloadPersonalData.cshtml",
+      "TargetPath": "Views\\Admin\\DownloadPersonalData.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/DeletePersonalData.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\DeletePersonalData.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/Disable2fa.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\Disable2fa.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/GenerateRecoveryCodes.cshtml",
+      "TargetPath": "Views\\Admin\\GenerateRecoveryCodes.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15698,13 +15718,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/LoginWithRecoveryCode.cshtml",
-      "TargetPath": "Views\\Account\\LoginWithRecoveryCode.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/AdminIndex.cshtml",
+      "TargetPath": "Views\\Admin\\AdminIndex.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/GenerateRecoveryCodes.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/LoginWithRecoveryCode.cshtml",
+      "TargetPath": "Views\\Account\\LoginWithRecoveryCode.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15713,8 +15733,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/SetPassword.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\SetPassword.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/TwoFactorAuthentication.cshtml",
+      "TargetPath": "Views\\Admin\\TwoFactorAuthentication.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15723,18 +15743,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/Index.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Login.cshtml",
       "TargetPath": "Views\\Account\\Login.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/DownloadPersonalData.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\DownloadPersonalData.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15743,18 +15753,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/_ManageNav.cshtml",
+      "TargetPath": "Views\\Admin\\_ManageNav.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/SetPassword.cshtml",
+      "TargetPath": "Views\\Admin\\SetPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/ResendEmailConfirmation.cshtml",
       "TargetPath": "Views\\Account\\ResendEmailConfirmation.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/_Layout.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/_StatusMessage.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\_StatusMessage.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15763,28 +15773,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/TwoFactorAuthentication.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\TwoFactorAuthentication.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Home/Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/ExternalLogins.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\ExternalLogins.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Register.cshtml",
       "TargetPath": "Views\\Account\\Register.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/PersonalData.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\PersonalData.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15808,8 +15803,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/_ManageNav.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\_ManageNav.cshtml",
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/Disable2fa.cshtml",
+      "TargetPath": "Views\\Admin\\Disable2fa.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/DeletePersonalData.cshtml",
+      "TargetPath": "Views\\Admin\\DeletePersonalData.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15830,11 +15830,6 @@
     {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/ResetPassword.cshtml",
       "TargetPath": "Views\\Account\\ResetPassword.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/Manage/Email.cshtml",
-      "TargetPath": "Views\\Account\\Manage\\Email.cshtml",
       "FileKind": "mvc"
     }
   ],
