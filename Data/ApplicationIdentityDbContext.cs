@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace nicksite.Data
+namespace website.Data
 {
-    public class WebsiteIdentityDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationIdentityDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
-        public WebsiteIdentityDbContext(DbContextOptions<WebsiteIdentityDbContext> options)
+        public ApplicationIdentityDbContext(DbContextOptions<ApplicationIdentityDbContext> options)
             : base(options)
         {
         }

@@ -14,14 +14,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
 #line 1 "/Users/nicho/Desktop/Projects/GIT/website/Views/_ViewImports.cshtml"
-using nicksite;
+using website;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 2 "/Users/nicho/Desktop/Projects/GIT/website/Views/_ViewImports.cshtml"
-using nicksite.Models;
+using website.Models;
 
 #line default
 #line hidden

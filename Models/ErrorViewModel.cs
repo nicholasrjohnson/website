@@ -1,6 +1,6 @@
 using System;
 
-namespace nicksite.Models
+namespace website.Models
 {
     public class ErrorViewModel
     {

@@ -12,11 +12,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using MySql.Data.EntityFrameworkCore;
+using website.Data;
 
-
-using nicksite.Data;
-
-namespace nicksite
+namespace website
 {
     public class Startup
     {
@@ -30,12 +29,13 @@ namespace nicksite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<WebsiteIdentityDbContext>(options =>
+            services.AddDbContext<ApplicationIdentityDbContext>(options =>
                     options.UseMySQL(
                         Configuration.GetConnectionString("Membership")));
 
-                services.AddDefaultIdentity<WebsiteIdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<WebsiteIdentityDbContext>();
+            services.AddDefaultIdentity<ApplicationIdentityUser>()
+                    .AddDefaultTokenProviders();
+
             services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
@@ -61,6 +61,9 @@ namespace nicksite
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
+            app.UseAuthentication();
+            app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

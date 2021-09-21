@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/nicksite.csproj",
+  "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/website.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -14389,7 +14389,7 @@
     ],
     "CSharpLanguageVersion": 800
   },
-  "RootNamespace": "nicksite",
+  "RootNamespace": "website",
   "Documents": [
     {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Shared/_Layout.cshtml",
