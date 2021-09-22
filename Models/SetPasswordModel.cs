@@ -1,36 +1,22 @@
+
 using System;
-using System.Collections.Generic;
+using System.Text;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using website.Data;
 
-namespace website.Models {
-
-    public class ChangePasswordModel 
+namespace website.Models
+{
+    public class SetPasswordModel
     {
-
+        
         [BindProperty]
         public InputModel Input { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
 
-        public ChangePasswordModel() {
-            this.Input = new InputModel();
-        }
-
         public class InputModel
         {
-            [Required]
-            [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
-            public string OldPassword { get; set; }
-
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -42,5 +28,6 @@ namespace website.Models {
             [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
+
     }
 }

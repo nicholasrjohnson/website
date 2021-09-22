@@ -38,6 +38,7 @@ namespace website
                     .AddDefaultTokenProviders();
 
             services.AddMvc().AddRazorRuntimeCompilation();
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -24,6 +24,10 @@ namespace website.Models
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public EmailModel() { 
+            this.Input = new InputModel();
+        }
+
         public class InputModel
         {
             [Required]

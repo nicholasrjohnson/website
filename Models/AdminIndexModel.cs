@@ -19,6 +19,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public AdminIndexModel() {
+            this.Input = new InputModel();
+        }
+        
         public class InputModel
         {
             [Phone]

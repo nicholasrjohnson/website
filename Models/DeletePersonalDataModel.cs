@@ -13,6 +13,9 @@ namespace website.Models
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public DeletePersonalDataModel() {
+            Input = new InputModel();
+        }
         public class InputModel
         {
             [Required]
