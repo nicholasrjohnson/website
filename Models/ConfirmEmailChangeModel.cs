@@ -6,6 +6,6 @@ namespace website.Models
     {
        
         [TempData]
-        public string StatusMessage { get; set;  
+        public string StatusMessage { get; set; } 
     }
 }
