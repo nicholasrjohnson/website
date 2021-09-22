@@ -223,7 +223,7 @@ namespace website.Controllers
             return model;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> GetEmailAsync()
         {
             EmailModel model = null;
             var user = await _userManager.GetUserAsync(User);
@@ -236,7 +236,7 @@ namespace website.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> OnPostChangeEmailAsync()
+        public async Task<IActionResult> PostChangeEmailAsync()
         {
             EmailModel model = new EmailModel();
             var user = await _userManager.GetUserAsync(User);
@@ -593,7 +593,7 @@ namespace website.Controllers
 
             _logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes.", userId);
             model.StatusMessage = "You have generated new recovery codes.";
-            return RedirectToPage("./ShowRecoveryCodes");
+            return RedirectToAction("GetShowRecovertyCodes", model);
         }
 
         public async Task<IActionResult> GetPersonalData()
@@ -686,9 +686,13 @@ namespace website.Controllers
             return View(model);
         }
 
-        public IActionResult GetShowRecoveryCodes()
+        public IActionResult GetShowRecoveryCodes(GenerateRecoveryCodesModel genmodel)
         {
             ShowRecoveryCodesModel model = new ShowRecoveryCodesModel();
+
+            model.RecoveryCodes = new string[genmodel.RecoveryCodes.Count()];
+
+
             if (model.RecoveryCodes == null || model.RecoveryCodes.Length == -1)
             {
                 return RedirectToPage("./TwoFactorAuthentication");
@@ -714,7 +718,7 @@ namespace website.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnTwoFactorAuthenticationPost()
         {
             TwoFactorAuthenticationModel model = new TwoFactorAuthenticationModel();
             var user = await _userManager.GetUserAsync(User);

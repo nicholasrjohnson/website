@@ -8,12 +8,15 @@ namespace website.Models
 {
     public class SetPasswordModel
     {
-        
         [BindProperty]
         public InputModel Input { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
+
+        public SetPasswordModel() {
+            this.Input = new InputModel();
+        }
 
         public class InputModel
         {
