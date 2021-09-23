@@ -45,7 +45,8 @@ namespace website.Controllers
             _httpContextAccessor = httpContextAccessor;
         } 
 
-        public async Task<IActionResult> SetPasswordGetAsync()
+        [HttpGet]
+        public async Task<IActionResult> GetChangePasswordAsync()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -62,7 +63,8 @@ namespace website.Controllers
             return View();
         }
 
-        public async Task<IActionResult> SetPasswordPostAsync()
+        [HttpPost]
+        public async Task<IActionResult> PostChangePasswordAsync()
         {
             ChangePasswordModel model = new ChangePasswordModel();
 
@@ -90,6 +92,54 @@ namespace website.Controllers
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
             model.StatusMessage = "Your password has been changed.";
+
+            return View(model);
+        }
+        public async Task<IActionResult> GetSetPasswordAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var hasPassword = await _userManager.HasPasswordAsync(user);
+
+            if (hasPassword)
+            {
+                return RedirectToPage("./ChangePassword");
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> PostSetPasswordAsync()
+        {
+            SetPasswordModel model = new SetPasswordModel();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var addPasswordResult = await _userManager.AddPasswordAsync(user, model.Input.NewPassword);
+            if (!addPasswordResult.Succeeded)
+            {
+                foreach (var error in addPasswordResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(model);
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            model.StatusMessage = "Your password has been set.";
 
             return View(model);
         }
@@ -635,55 +685,6 @@ namespace website.Controllers
             model.StatusMessage = "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.";
 
             return RedirectToPage("./EnableAuthenticator");
-        }
-
-        public async Task<IActionResult> GetSetPasswordAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            var hasPassword = await _userManager.HasPasswordAsync(user);
-
-            if (hasPassword)
-            {
-                return RedirectToPage("./ChangePassword");
-            }
-
-            return View();
-        }
-
-        public async Task<IActionResult> PostSetPasswordAsync()
-        {
-            SetPasswordModel model = new SetPasswordModel();
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            var addPasswordResult = await _userManager.AddPasswordAsync(user, model.Input.NewPassword);
-            if (!addPasswordResult.Succeeded)
-            {
-                foreach (var error in addPasswordResult.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-                return View(model);
-            }
-
-            await _signInManager.RefreshSignInAsync(user);
-            model.StatusMessage = "Your password has been set.";
-
-            return View(model);
         }
 
         public IActionResult GetShowRecoveryCodes(GenerateRecoveryCodesModel genmodel)

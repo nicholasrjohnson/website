@@ -26,16 +26,8 @@ using website.Models;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 1 "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/_ViewImports.cshtml"
-using scaffold.Areas.Identity.Pages.Account;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0723a602e84d5a261d35f2702dcc54883c69cad5", @"/Views/Account/_StatusMessage.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9ebaa5f4cdfc35284617aedaac2edfceeeb71a4d", @"/Views/_ViewImports.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"46c2e50ef7af95458358b9c1009fec799c41bafd", @"/Views/Account/_ViewImports.cshtml")]
     public class Views_Account__StatusMessage : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<string>
     {
         #pragma warning disable 1998

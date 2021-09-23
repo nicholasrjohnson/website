@@ -30,7 +30,6 @@
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Account/ResetPassword.cshtml.g.cs
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Account/ResetPasswordConfirmation.cshtml.g.cs
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Account/_StatusMessage.cshtml.g.cs
-/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Account/_ViewImports.cshtml.g.cs
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Admin/AdminIndex.cshtml.g.cs
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Admin/ChangePassword.cshtml.g.cs
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Admin/DeletePersonalData.cshtml.g.cs

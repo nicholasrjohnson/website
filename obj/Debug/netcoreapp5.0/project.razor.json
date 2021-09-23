@@ -15698,11 +15698,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/_ViewImports.cshtml",
-      "TargetPath": "Views\\Account\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/DownloadPersonalData.cshtml",
       "TargetPath": "Views\\Admin\\DownloadPersonalData.cshtml",
       "FileKind": "mvc"
