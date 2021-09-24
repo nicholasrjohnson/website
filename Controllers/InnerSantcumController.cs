@@ -13,6 +13,7 @@ namespace website.Controllers
     public class InnerSanctumController : Controller
     {
 
+            [Authorize]
         public IActionResult InnerSanctumIndex() {
 
             return View();

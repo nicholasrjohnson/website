@@ -416,3 +416,8 @@
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/website.genruntimeconfig.cache
 /Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/MySqlConnector.dll
 /Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/Pomelo.EntityFrameworkCore.MySql.dll
+/Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/Newtonsoft.Json.dll
+/Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/SendGrid.dll
+/Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/StarkbankEcdsa.dll
+/Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Account/SuccessfulLogout.cshtml.g.cs

@@ -4,7 +4,7 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Threading.Tasks;
 
-namespace website.Models.Services{ 
+namespace website.Services{ 
   public class EmailSender : IEmailSender
   {
         public EmailSender(IOptions<website.Data.EmailSenderOptions> optionsAccessor)

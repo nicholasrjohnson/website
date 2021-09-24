@@ -39,26 +39,6 @@ namespace website.Controllers
             _emailSender = emailSender;
         } 
 
-        public async Task<IActionResult> GetConfirmEmailAsync(string userId, string code)
-        {
-            ConfirmEmailModel model = new ConfirmEmailModel();
-
-            if (userId == null || code == null)
-            {
-                return RedirectToPage("/Index");
-            }
-
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{userId}'.");
-            }
-
-            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await _userManager.ConfirmEmailAsync(user, code);
-            model.StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
-            return View(model);
-        }
         public async Task<IActionResult> GetConfirmEmailChangeAsync(string userId, string email, string code)
         {
             ConfirmEmailChangeModel model = new ConfirmEmailChangeModel();
@@ -96,7 +76,7 @@ namespace website.Controllers
             return View(model);
         }
 
-         public async Task<IActionResult> PostForgotPasswordAsync(ForgotPasswordModel model)
+         public async Task<IActionResult> ForgotPassword(ForgotPasswordModel model)
          {
             if (ModelState.IsValid)
             {
@@ -145,69 +125,70 @@ namespace website.Controllers
             return new ChallengeResult(provider, properties);
         }
 
-        public async Task<IActionResult> GetExternalLoginCallbackAsync(string returnUrl = null, string remoteError = null)
+        public async Task<IActionResult> ExternalLoginConfirmationAsync(ExternalLoginModel model, string remoteError = null)
         {
-            ExternalLoginModel model = new ExternalLoginModel();
-            returnUrl = returnUrl ?? Url.Content("~/");
-            if (remoteError != null)
-            {
-                model.ErrorMessage = $"Error from external provider: {remoteError}";
-                return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
-            }
-            var info = await _signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
-            {
-                model.ErrorMessage = "Error loading external login information.";
-                return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
-            }
 
-            // Sign in the user with this external login provider if the user already has a login.
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
-            if (result.Succeeded)
-            {
-                _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
-                return LocalRedirect(returnUrl);
-            }
-            if (result.IsLockedOut)
-            {
-                return RedirectToPage("./Lockout");
-            }
-            else
-            {
-                // If the user does not have an account, then ask the user to create an account.
-                model.ReturnUrl = returnUrl;
-                model.ProviderDisplayName = info.ProviderDisplayName;
-                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
-                {
-                    model.Input = new ExternalLoginModel.InputModel
-                    {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
-                    };
-                }
+            if (!ModelState.IsValid) { 
+                model = new ExternalLoginModel();
                 return View(model);
-            }
-        }
-        public async Task<IActionResult> PostExternalLoginConfirmationAsync(string returnUrl = null)
-        {
-            ExternalLoginModel model = new ExternalLoginModel();
-            returnUrl = returnUrl ?? Url.Content("~/");
-            // Get the information about the user from the external login provider
-            var info = await _signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
-            {
-                model.ErrorMessage = "Error loading external login information during confirmation.";
-                return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
-            }
+            } else {
+                model.ReturnUrl = model.ReturnUrl;
 
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationIdentityUser { UserName = model.Input.Email, Email = model.Input.Email };
+                model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
+                
+                if (model.ErrorMessage != null)
+                {
+                    model.ErrorMessage = $"Error from external provider: {remoteError}";
+                    return RedirectToPage("Login", model);
+                }
+                var info = await _signInManager.GetExternalLoginInfoAsync();
+                if (info == null)
+                {
+                    model.ErrorMessage = "Error loading external login information.";
+                    return RedirectToPage("Login", model);
+                }
 
-                var result = await _userManager.CreateAsync(user);
+                // Sign in the user with this external login provider if the user already has a login.
+                var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
                 if (result.Succeeded)
                 {
-                    result = await _userManager.AddLoginAsync(user, info);
-                    if (result.Succeeded)
+                    _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+                    return LocalRedirect(model.ReturnUrl);
+                }
+                if (result.IsLockedOut)
+                {
+                    return RedirectToPage("./Lockout");
+                }
+                else
+                {
+                    // If the user does not have an account, then ask the user to create an account.
+                    model.ProviderDisplayName = info.ProviderDisplayName;
+                    if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                    {
+                        model.Input = new ExternalLoginModel.InputModel
+                        {
+                            Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        };
+                    }
+                }
+
+        
+
+                // Get the information about the user from the external login provider
+                if (info == null)
+                {
+                    model.ReturnUrl = model.ReturnUrl;
+                    model.ErrorMessage = "Error loading external login information during confirmation.";
+                    return View("Login", model);
+                }
+            
+                var user = new ApplicationIdentityUser { UserName = model.Input.Email, Email = model.Input.Email };
+
+                var resultCreateUser = await _userManager.CreateAsync(user);
+                if (resultCreateUser.Succeeded)
+                {
+                    resultCreateUser = await _userManager.AddLoginAsync(user, info);
+                    if (resultCreateUser.Succeeded)
                     {
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
 
@@ -231,18 +212,17 @@ namespace website.Controllers
 
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
 
-                        return LocalRedirect(returnUrl);
+                        return LocalRedirect(model.ReturnUrl);
                     }
                 }
-                foreach (var error in result.Errors)
+                foreach (var error in resultCreateUser.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+                
+                model.ProviderDisplayName = info.ProviderDisplayName;
             }
-
-            model.ProviderDisplayName = info.ProviderDisplayName;
-            model.ReturnUrl = returnUrl;
-            return View(returnUrl, model);
+            return View(model);
         }        
 
         public IActionResult ForgotPassword() {
@@ -257,16 +237,16 @@ namespace website.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string returnUrl = null)
+        public async Task<IActionResult> Login(LoginModel model)
         {
-            returnUrl ??= Url.Content("~/");
-
-            LoginModel model = new LoginModel();
-
-            model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) {
+                return View(model);
+            }
+            else
             {
+                model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
+
+                model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                 if (!string.IsNullOrEmpty(model.ErrorMessage))
                 {
                     ModelState.AddModelError(string.Empty, model.ErrorMessage);
@@ -283,11 +263,17 @@ namespace website.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return LocalRedirect(model.ReturnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = model.Input.RememberMe });
+                    LoginWith2faModel login2fa = new LoginWith2faModel();
+
+                    login2fa.ReturnUrl = model.ReturnUrl;
+                    login2fa.RememberMe = model.Input.RememberMe;
+
+
+                    return View("LoginWith2fa", login2fa);
                 }
                 if (result.IsLockedOut)
                 {
@@ -297,42 +283,21 @@ namespace website.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View();
+                    return View(model);
                 }
             }
             // If we got this far, something failed, redisplay form
-            return View();
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> GetLoginWith2faAsync(bool rememberMe, string returnUrl = null)
+        public async Task<IActionResult> LoginWith2faAsync(LoginWith2faModel model)
         {
-            LoginWith2faModel model = new LoginWith2faModel();
-            // Ensure the user has gone through the username & password screen first
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-
-            if (user == null)
-            {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
-            }
-
-            model.ReturnUrl = returnUrl;
-            model.RememberMe = rememberMe;
-
-            return View();
-        }
-
-        [AllowAnonymous]
-        public async Task<IActionResult> PostLoginWith2faAsync(bool rememberMe, string returnUrl = null)
-        {
-            LoginWith2faModel model = new LoginWith2faModel();
-
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            returnUrl = returnUrl ?? Url.Content("~/");
+            model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
 
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
@@ -342,12 +307,12 @@ namespace website.Controllers
 
             var authenticatorCode = model.Input.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-            var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.Input.RememberMachine);
+            var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, model.RememberMe, model.Input.RememberMachine);
 
             if (result.Succeeded)
             {
                 _logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", user.Id);
-                return LocalRedirect(returnUrl);
+                return LocalRedirect(model.ReturnUrl);
             }
             else if (result.IsLockedOut)
             {
@@ -416,27 +381,34 @@ namespace website.Controllers
             }
         }
 
-        public async Task<IActionResult> Logout(string returnUrl = null)
+        public async Task<IActionResult> Logout(LogoutModel model)
         {
+            if(!ModelState.IsValid) {
+                model.ReturnUrl = "~/Account/SuccessfulLogout";
+                model = new LogoutModel();
+                return View(model);
+            }
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            if (returnUrl != null)
+            if (model.ReturnUrl != null)
             {
-                return LocalRedirect(returnUrl);
+                return LocalRedirect(model.ReturnUrl);
             }
             else
             {
-                return View();
+                return View(model);
             }
         }
 
-        public async Task<IActionResult> Register(string returnUrl = null)
-        {
-            RegisterModel model = new RegisterModel();
+        public IActionResult SuccessfulLogout() {
+            return View();
+        }
 
-            returnUrl ??= Url.Content("~/");
+        public async Task<IActionResult> Register(RegisterModel model)
+        {
+            model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
             model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)// && model != null)
             {
                 var user = new ApplicationIdentityUser { UserName = model.Input.Email, Email = model.Input.Email };
                 var result = await _userManager.CreateAsync(user, model.Input.Password);
@@ -449,7 +421,7 @@ namespace website.Controllers
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = model.ReturnUrl },
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(model.Input.Email, "Confirm your email",
@@ -457,12 +429,12 @@ namespace website.Controllers
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = model.Input.Email, returnUrl = returnUrl });
+                        return View("RegisterConfirmation", model);
                     }
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        return LocalRedirect(model.ReturnUrl);
                     }
                 }
                 foreach (var error in result.Errors)
@@ -471,53 +443,52 @@ namespace website.Controllers
                 }
             }
 
+            model = new RegisterModel();
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> RegisterConfirmation(string email, string returnUrl = null)
+        public async Task<IActionResult> RegisterConfirmation(RegisterModel model)
         {
-            RegisterConfirmationModel model = new RegisterConfirmationModel();
-
-            if (email == null)
+            if (model.Input.Email == null)
             {
                 return RedirectToPage("/Index");
             }
 
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailAsync(model.Input.Email);
             if (user == null)
             {
-                return NotFound($"Unable to load user with email '{email}'.");
+                return NotFound($"Unable to load user with email '{model.Input.Email}'.");
             }
 
-            model.Email = email;
+            RegisterConfirmationModel registerModel = new RegisterConfirmationModel();
+
+            registerModel.Email = model.Input.Email;
+
             // Once you add a real email sender, you should remove this code that lets you confirm the account
-            model.DisplayConfirmAccountLink = true;
-            if (model.DisplayConfirmAccountLink)
+            registerModel.DisplayConfirmAccountLink = true;
+            if (registerModel.DisplayConfirmAccountLink)
             {
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                model.EmailConfirmationUrl = Url.Page(
+               registerModel.EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
-                    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                    protocol: Request.Scheme);
+                    values: new { area = "Identity", userId = userId, code = code, returnUrl = registerModel.EmailConfirmationUrl },
+              protocol: Request.Scheme);
+            }
+            else
+            {
+                registerModel = null;
             }
 
-            return View();
+            return View(registerModel);
         }
 
-        public IActionResult GetResendEmailConfirmation()
+        public async Task<IActionResult> ResendEmailConfirmationAsync(ResendEmailConfirmationModel model)
         {
-            return View();
-        }
-
-        public async Task<IActionResult> PostResendEmailConfirmationAsync()
-        {
-            ResendEmailConfirmationModel model = new ResendEmailConfirmationModel();
-
             if (!ModelState.IsValid)
             {
                 return View();

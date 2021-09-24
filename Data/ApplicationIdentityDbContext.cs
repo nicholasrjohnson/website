@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace website.Data
 {
-    public class ApplicationIdentityDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
+    public class ApplicationIdentityDbContext : IdentityDbContext<ApplicationIdentityUser, IdentityRole, string>
     {
         public ApplicationIdentityDbContext(DbContextOptions<ApplicationIdentityDbContext> options)
             : base(options)

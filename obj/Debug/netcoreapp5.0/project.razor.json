@@ -15713,6 +15713,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Account/SuccessfulLogout.cshtml",
+      "TargetPath": "Views\\Account\\SuccessfulLogout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/nicho/Desktop/Projects/GIT/website/Views/Admin/AdminIndex.cshtml",
       "TargetPath": "Views\\Admin\\AdminIndex.cshtml",
       "FileKind": "mvc"

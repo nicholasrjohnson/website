@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MySql.Data.EntityFrameworkCore;
 using MySqlConnector;
 using website.Data;
-using website.Models.Services;
+using website.Services;
 
 namespace website
 {

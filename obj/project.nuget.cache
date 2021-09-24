@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "d1gAT4UAAx5wBQMvPStQsTzD1NiskXgrVgJe3P7cNON5nP3g5kWJcTxaWQRCzfTmqRGE54xOCycFZ0BC27zx5g==",
+  "dgSpecHash": "hq945EYaWeF4dEyLvtQGYSh8GedZ72mwpw8LnrBlzElNqKvuuPxgH0+eUB9uR2VmFJCoApSFF71aHqWC7ebSWA==",
   "success": true,
   "projectFilePath": "/Users/nicho/Desktop/Projects/GIT/website/website.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "/Users/nicho/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/5.0.10/microsoft.aspnetcore.cryptography.keyderivation.5.0.10.nupkg.sha512",
     "/Users/nicho/.nuget/packages/microsoft.aspnetcore.dataprotection/2.2.0/microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
     "/Users/nicho/.nuget/packages/microsoft.aspnetcore.dataprotection.abstractions/2.2.0/microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",
+    "/Users/nicho/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/5.0.10/microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.10.nupkg.sha512",
     "/Users/nicho/.nuget/packages/microsoft.aspnetcore.hosting.abstractions/2.2.0/microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "/Users/nicho/.nuget/packages/microsoft.aspnetcore.hosting.server.abstractions/2.2.0/microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "/Users/nicho/.nuget/packages/microsoft.aspnetcore.http/2.2.0/microsoft.aspnetcore.http.2.2.0.nupkg.sha512",

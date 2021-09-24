@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace website.Data
 {
-    public class ApplicationIdentityUser : IdentityUser<string>
+    public class ApplicationIdentityUser : IdentityUser
     {
 
         public string CustomTag { get; set; }
