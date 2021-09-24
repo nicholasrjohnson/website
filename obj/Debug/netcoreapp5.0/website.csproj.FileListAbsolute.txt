@@ -414,3 +414,5 @@
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/website.Views.pdb
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/website.csproj.CopyComplete
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/website.genruntimeconfig.cache
+/Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/MySqlConnector.dll
+/Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/Pomelo.EntityFrameworkCore.MySql.dll

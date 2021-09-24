@@ -12,9 +12,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MySql.Data.EntityFrameworkCore;
+using MySqlConnector;
 using website.Data;
+using website.Models.Services;
 
 namespace website
 {
@@ -30,15 +33,25 @@ namespace website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationIdentityDbContext>(options =>
-                    options.UseMySQL(
-                        Configuration.GetConnectionString("Membership")));
+            var connectionString = Configuration.GetConnectionString("Membership");
+            services.AddDbContextPool<ApplicationIdentityDbContext>(options =>
+                    options.UseMySql(
+                        connectionString, ServerVersion.AutoDetect(connectionString)));
 
-            services.AddDefaultIdentity<ApplicationIdentityUser>()
-                    .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationIdentityUser, IdentityRole>()
+                .AddUserManager<UserManager<ApplicationIdentityUser>>()
+                .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddMvc().AddRazorRuntimeCompilation();
             services.AddHttpContextAccessor();
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<EmailSenderOptions>(options =>
+            {
+                options.ApiKey = Configuration["ExternalProviders:SendGrid:ApiKey"];
+                options.SenderEmail = Configuration["ExternalProviders:SendGrid:SenderEmail"]; 
+                options.SenderName = Configuration["ExternalProviders:SendGrid:SenderName"];
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

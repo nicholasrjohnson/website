@@ -257,26 +257,7 @@ namespace website.Controllers
         }
 
         [AllowAnonymous]
-        public async Task GetLoginAsync(string returnUrl = null)
-        {
-            LoginModel model = new LoginModel();
-            if (!string.IsNullOrEmpty(model.ErrorMessage))
-            {
-                ModelState.AddModelError(string.Empty, model.ErrorMessage);
-            }
-
-            returnUrl ??= Url.Content("~/");
-
-            // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-            model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
-            model.ReturnUrl = returnUrl;
-        }
-
-        [AllowAnonymous]
-        public async Task<IActionResult> PostLoginAsync(string returnUrl = null)
+        public async Task<IActionResult> Login(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
 
@@ -286,6 +267,16 @@ namespace website.Controllers
         
             if (ModelState.IsValid)
             {
+                if (!string.IsNullOrEmpty(model.ErrorMessage))
+                {
+                    ModelState.AddModelError(string.Empty, model.ErrorMessage);
+                }
+
+                // Clear the existing external cookie to ensure a clean login process
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+                model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Input.Email, model.Input.Password, model.Input.RememberMe, lockoutOnFailure: false);
@@ -309,7 +300,6 @@ namespace website.Controllers
                     return View();
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return View();
         }
@@ -425,12 +415,8 @@ namespace website.Controllers
                 return View(model);
             }
         }
-        public IActionResult GetLogout()
-        {
-            return View();
-        }
 
-        public async Task<IActionResult> PostLogout(string returnUrl = null)
+        public async Task<IActionResult> Logout(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
@@ -444,15 +430,7 @@ namespace website.Controllers
             }
         }
 
-        public async Task GetRegisterAsync(string returnUrl = null)
-        {
-            RegisterModel model = new RegisterModel();
-
-            model.ReturnUrl = returnUrl;
-            model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        }
-
-        public async Task<IActionResult> PostRegisterAsync(string returnUrl = null)
+        public async Task<IActionResult> Register(string returnUrl = null)
         {
             RegisterModel model = new RegisterModel();
 
@@ -498,7 +476,7 @@ namespace website.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> GetRegisterConfirmationAsync(string email, string returnUrl = null)
+        public async Task<IActionResult> RegisterConfirmation(string email, string returnUrl = null)
         {
             RegisterConfirmationModel model = new RegisterConfirmationModel();
 
@@ -569,7 +547,7 @@ namespace website.Controllers
             return View();
         }
 
-        public IActionResult GetResetPassword(string code = null)
+        public IActionResult ResetPassword(string code = null)
         {
             ResetPasswordModel model = new ResetPasswordModel();
 
@@ -616,7 +594,7 @@ namespace website.Controllers
             return View();
         }
 
-        public IActionResult GetResetPasswordConfirmation()
+        public IActionResult ResetPasswordConfirmation()
         {
             return View();
         }

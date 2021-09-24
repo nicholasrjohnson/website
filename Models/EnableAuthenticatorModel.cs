@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-;
-
 
 namespace website.Models
 {
@@ -16,7 +14,7 @@ namespace website.Models
 
         [TempData]
         public string StatusMessage { get; set; }
-        
+
         [BindProperty]
         public InputModel Input { get; set; }
 
