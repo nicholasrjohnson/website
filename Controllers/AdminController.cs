@@ -45,7 +45,11 @@ namespace website.Controllers
             _httpContextAccessor = httpContextAccessor;
         } 
 
-        [HttpGet]
+        public IActionResult AdminIndex(AdminIndexModel model) {
+            model = new AdminIndexModel();
+            return View(model); 
+        }
+
         public async Task<IActionResult> GetChangePasswordAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -63,7 +67,7 @@ namespace website.Controllers
             return View();
         }
 
-        [HttpPost]
+    
         public async Task<IActionResult> PostChangePasswordAsync()
         {
             ChangePasswordModel model = new ChangePasswordModel();
@@ -273,20 +277,7 @@ namespace website.Controllers
             return model;
         }
 
-        public async Task<IActionResult> GetEmailAsync()
-        {
-            EmailModel model = null;
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            model = await LoadEmailAsync(user);
-            return View(model);
-        }
-
-        public async Task<IActionResult> PostChangeEmailAsync()
+        public async Task<IActionResult> ChangeEmail()
         {
             EmailModel model = new EmailModel();
             var user = await _userManager.GetUserAsync(User);
@@ -657,18 +648,7 @@ namespace website.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GetResetAuthenticatorAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            return View();
-        }
-
-        public async Task<IActionResult> PostResetAuthenticatorAsync()
+        public async Task<IActionResult> ResetAuthenticator()
         {
             ResetAuthenticatorModel model = new ResetAuthenticatorModel();
             var user = await _userManager.GetUserAsync(User);

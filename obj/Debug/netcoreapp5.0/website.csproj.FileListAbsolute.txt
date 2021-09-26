@@ -421,3 +421,4 @@
 /Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/StarkbankEcdsa.dll
 /Users/nicho/Desktop/Projects/GIT/website/bin/Debug/netcoreapp5.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 /Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Account/SuccessfulLogout.cshtml.g.cs
+/Users/nicho/Desktop/Projects/GIT/website/obj/Debug/netcoreapp5.0/Razor/Views/Shared/_LoginLogoutPartial.cshtml.g.cs

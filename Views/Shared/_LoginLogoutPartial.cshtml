@@ -1,0 +1,56 @@
+@model LoginLogoutModel
+
+@{
+    if (!User.Identity.IsAuthenticated && Model.login == true) {
+        <div>           
+            <form id="account" asp-controller="Account" asp-action="LoginLogout" method="post">
+                <h4>Use a local account to log in.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")
+                    </p>
+                    <p>
+                        @Html.ActionLink("Register as a new user", "Register", "Account", Model)
+                    </p>
+                    <p>
+                        @Html.ActionLink("Resend email confirmation", "ResendEmailConfirmation", "Account") <!--<a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>-->
+                    </p>
+                </div>
+            </form>
+    </div>
+    } 
+    else
+    {
+    <div>
+        <h1>Logout<h1>
+    
+        <form class="form-inline" asp-controller="Account" asp-action="LoginLogout" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+        </form>
+        
+    </div>
+    }
+}
