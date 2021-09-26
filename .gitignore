@@ -1,3 +1,4 @@
 appsettings*
 obj/*
 bin/*
+.DS_Store
