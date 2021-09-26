@@ -241,81 +241,76 @@ namespace website.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> LoginLogout(LoginLogoutModel model)
+        public async Task<IActionResult> Login(LoginModel model)
         {
-            if(model.login == true) {
-                if (!ModelState.IsValid) {
-                    return View("~/", model);
-                }
-                else
-                {
-                    model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
-
-                    model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-                    if (!string.IsNullOrEmpty(model.ErrorMessage))
-                    {
-                        ModelState.AddModelError(string.Empty, model.ErrorMessage);
-                    }
-
-                    // Clear the existing external cookie to ensure a clean login process
-                    await _httpContextAccessor.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-
-                    model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-                
-                    // This doesn't count login failures towards account lockout
-                    // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                    var result = await _signInManager.PasswordSignInAsync(model.Input.Email, model.Input.Password, model.Input.RememberMe, lockoutOnFailure: false);
-                    if (result.Succeeded)
-                    {
-                        model.login = true;
-                        _logger.LogInformation("User logged in.");
-                        return View("~/", model);
-                    }
-                    if (result.RequiresTwoFactor)
-                    {
-                        LoginWith2faModel login2fa = new LoginWith2faModel();
-
-                        login2fa.ReturnUrl = model.ReturnUrl;
-                        login2fa.RememberMe = model.Input.RememberMe;
-
-
-                        return View("LoginWith2fa", login2fa);
-                    }
-                    if (result.IsLockedOut)
-                    {
-                        _logger.LogWarning("User account locked out.");
-                        return RedirectToPage("./Lockout");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                        return View("~/", model);
-                    }
-                }
-                // If we got this far, something failed, redisplay form
-           
+            if (!ModelState.IsValid) {
+                return View("~/", model);
             }
-            else 
+            else
             {
-                if(!ModelState.IsValid) {
-                    model.ReturnUrl = "~/Account/SuccessfulLogout";
-                    model = new LoginLogoutModel();
-                    model.login = false;
+                model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
+
+                model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                if (!string.IsNullOrEmpty(model.ErrorMessage))
+                {
+                    ModelState.AddModelError(string.Empty, model.ErrorMessage);
+                }
+
+                // Clear the existing external cookie to ensure a clean login process
+                await _httpContextAccessor.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+                model.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(model.Input.Email, model.Input.Password, model.Input.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
                     return View("~/", model);
                 }
-                await _signInManager.SignOutAsync();
-                _logger.LogInformation("User logged out.");
-                model.login = false;
-                if (model.ReturnUrl != null)
+                if (result.RequiresTwoFactor)
                 {
-                    return LocalRedirect(model.ReturnUrl);
+                    LoginWith2faModel login2fa = new LoginWith2faModel();
+
+                    login2fa.ReturnUrl = model.ReturnUrl;
+                    login2fa.RememberMe = model.Input.RememberMe;
+
+
+                    return View("LoginWith2fa", login2fa);
+                }
+                if (result.IsLockedOut)
+                {
+                    _logger.LogWarning("User account locked out.");
+                    return RedirectToPage("./Lockout");
                 }
                 else
                 {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View("~/", model);
-                }   
+                }
             }
+            // If we got this far, something failed, redisplay form
         }
+
+        public async Task<IActionResult> Logout(LogoutModel model) {
+            if(!ModelState.IsValid) {
+                model.ReturnUrl = "~/Account/SuccessfulLogout";
+                model = new LogoutModel();
+                return View("~/", model);
+            }
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+            if (model.ReturnUrl != null)
+            {
+                return LocalRedirect(model.ReturnUrl);
+            }
+            else
+            {
+                return View("~/", model);
+            }   
+        }
+    
 
         [AllowAnonymous]
         public async Task<IActionResult> LoginWith2fa(LoginWith2faModel model)

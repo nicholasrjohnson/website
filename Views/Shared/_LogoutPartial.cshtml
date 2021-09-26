@@ -1,0 +1,7 @@
+@model website.Models.LogoutModel
+
+<div>
+            <form class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="~/Home/Index" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+            </form>
+</div>

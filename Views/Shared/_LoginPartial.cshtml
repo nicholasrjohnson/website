@@ -1,9 +1,6 @@
-@model LoginLogoutModel
-
-@{
-    if (!User.Identity.IsAuthenticated && Model.login == true) {
+@model website.Models.LoginModel
         <div>           
-            <form id="account" asp-controller="Account" asp-action="LoginLogout" method="post">
+            <form id="account" asp-controller="Account" asp-action="LoginLogout" asp-route-returnUrl="~/Home/Index" method="post">
                 <h4>Use a local account to log in.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
@@ -41,16 +38,3 @@
                 </div>
             </form>
     </div>
-    } 
-    else
-    {
-    <div>
-        <h1>Logout<h1>
-    
-        <form class="form-inline" asp-controller="Account" asp-action="LoginLogout" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-        </form>
-        
-    </div>
-    }
-}
