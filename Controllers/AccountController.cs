@@ -82,7 +82,11 @@ namespace website.Controllers
 
          public async Task<IActionResult> ForgotPassword(ForgotPasswordModel model)
          {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                model = new ForgotPasswordModel();
+            }
+            else
             {
                 var user = await _userManager.FindByEmailAsync(model.Input.Email);
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
@@ -109,7 +113,7 @@ namespace website.Controllers
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
 
-            return View();
+            return View(model);
         }
 
         public IActionResult AccessDenied() {
@@ -229,9 +233,6 @@ namespace website.Controllers
             return View(model);
         }        
 
-        public IActionResult ForgotPassword() {
-            return View();
-        }
         public IActionResult ForgotPasswordConfirmation() {
             return View();
         }
@@ -241,7 +242,7 @@ namespace website.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> LoginBefore(LoginModel model)
         {
             if (!ModelState.IsValid) {
                 return View("~/", model);
@@ -293,7 +294,7 @@ namespace website.Controllers
             // If we got this far, something failed, redisplay form
         }
 
-        public async Task<IActionResult> Logout(LogoutModel model) {
+        public async Task<IActionResult> LogoutBefore(LogoutModel model) {
             if(!ModelState.IsValid) {
                 model.ReturnUrl = "~/Account/SuccessfulLogout";
                 model = new LogoutModel();
@@ -309,6 +310,75 @@ namespace website.Controllers
             {
                 return View("~/", model);
             }   
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(string email, string password, bool rememberMe)
+        {
+                IList<AuthenticationScheme> externalLogins  = null;
+                string indexUrl = Url.Content("~/Home/Index");
+
+                externalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToArray();
+              
+                // Clear the existing external cookie to ensure a clean login process
+                await _httpContextAccessor.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+
+                externalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToArray();
+            
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
+                    
+                     return new JsonResult( 
+                         new Dictionary<string,string>() { 
+                             { "url", "" },
+                             { "succeeded", "true"}
+                         });
+                }
+                if (result.RequiresTwoFactor)
+                {
+                    LoginWith2faModel login2fa = new LoginWith2faModel();
+
+                    string returnUrl = "~/Account/LoginWith2fa";
+
+
+                     return new JsonResult( 
+                         new Dictionary<string,string>() { 
+                             { "url", returnUrl },
+                             { "succeeded", "false"}
+                         });
+                }
+                if (result.IsLockedOut)
+                {
+                    _logger.LogWarning("User account locked out.");
+                    return new JsonResult( 
+                         new Dictionary<string,string>() { 
+                             { "url", "~/Account/Lockout" },
+                             { "succeeded", "false"}
+                         });
+                 }
+                else
+                {
+            return new JsonResult( 
+                         new Dictionary<string,string>() { 
+                             { "url", "InvalidLogin" },
+                             { "succeeded", "false"}
+                         });
+                  }
+            // If we got this far, something failed, redisplay form
+        }
+
+        public async Task<IActionResult> Logout() {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+                        return new JsonResult( 
+                         new Dictionary<string,string>() { 
+                             { "succeeded", "true"}
+                         });
+
         }
     
 
@@ -408,6 +478,7 @@ namespace website.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/");
@@ -536,17 +607,16 @@ namespace website.Controllers
                 {
                     Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
                 };
-                return View();
+                return View(model);
             }
         }
 
-        public async Task<IActionResult> PostResetPassword(ResetPasswordModel model)
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
         {
 
             if (!ModelState.IsValid)
             {
-                model = new ResetPasswordModel();
-                return View(model);
+                return View("Views/Home/Index.cshtml");
             }
 
             var user = await _userManager.FindByEmailAsync(model.Input.Email);

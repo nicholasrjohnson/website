@@ -50,25 +50,7 @@ namespace website.Controllers
             return View(model); 
         }
 
-        public async Task<IActionResult> GetChangePasswordAsync()
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            var hasPassword = await _userManager.HasPasswordAsync(user);
-            if (!hasPassword)
-            {
-                return RedirectToPage("./SetPassword");
-            }
-
-            return View();
-        }
-
-    
-        public async Task<IActionResult> PostChangePasswordAsync()
+        public async Task<IActionResult> ChangePassword()
         {
             ChangePasswordModel model = new ChangePasswordModel();
 
@@ -81,6 +63,12 @@ namespace website.Controllers
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var hasPassword = await _userManager.HasPasswordAsync(user);
+            if (!hasPassword)
+            {
+                return View("~/Admin/SetPassword");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.Input.OldPassword, model.Input.NewPassword);
@@ -260,14 +248,14 @@ namespace website.Controllers
             return new FileContentResult(JsonSerializer.SerializeToUtf8Bytes(personalData), "application/json");
         }
 
-        private async Task<EmailModel> LoadEmailAsync(ApplicationIdentityUser user)
+        private async Task<ChangeEmailModel> LoadEmailAsync(ApplicationIdentityUser user)
         {
-            EmailModel model = new EmailModel();
+            ChangeEmailModel model = new ChangeEmailModel();
 
             var email = await _userManager.GetEmailAsync(user);
             model.Email = email;
 
-            model.Input = new EmailModel.InputModel
+            model.Input = new ChangeEmailModel.InputModel
             {
                 NewEmail = email,
             };
@@ -279,7 +267,7 @@ namespace website.Controllers
 
         public async Task<IActionResult> ChangeEmail()
         {
-            EmailModel model = new EmailModel();
+            ChangeEmailModel model = new ChangeEmailModel();
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -318,7 +306,7 @@ namespace website.Controllers
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
-            EmailModel model = new EmailModel();
+            ChangeEmailModel model = new ChangeEmailModel();
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {

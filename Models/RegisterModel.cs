@@ -7,16 +7,16 @@ namespace website.Models
 {
     public class RegisterModel
     {
-         [BindProperty]
+        public RegisterModel() {
+            this.Input = new InputModel();
+        }
+       
+        [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-        public RegisterModel() {
-            this.Input = new InputModel();
-        }
         
         public class InputModel
         {

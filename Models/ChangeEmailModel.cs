@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace website.Models
 {
-    public class EmailModel
+    public class ChangeEmailModel
     {
         public string Username { get; set; }
 
@@ -24,7 +24,7 @@ namespace website.Models
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public EmailModel() { 
+        public ChangeEmailModel() { 
             this.Input = new InputModel();
         }
 

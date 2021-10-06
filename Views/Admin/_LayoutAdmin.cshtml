@@ -46,29 +46,45 @@
   </div> 
 
   <div class="row">
-    <div class="col-sm-2 sidenav fullheight container-fluid text-center zone" style="margin-top:20px; padding:15px;">
-      <p><a id="homeIdSide" href="/Home/Index">Home</a></p>
-      <p><a id="aboutIdSide" href="/Home/About">About</a></p>
-      <p><a id="projectsIdSide" href="/Home/Projects">Projects</a></p>
-      <p><a class="linktext" href="https://blog.nicholasrjohnson.com">Blog</a></p>
-      <p><a class="linktext" href="/resources/NicholasRJohnsonResume.docx" download>Resume</a></p>
-      <p><a id="contactIdSide" href="/Home/Contact">Contact</a></p>
-      <div class="container">
-            @await Html.PartialAsync("~/Views/Shared/_LoginPartial.cshtml")
-      </div>
-    </div> 
     <div class="col container-fluid">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+      <h2>Manage your account</h2>
 
-        <footer class="container-fluid text-center" >
-        <p>&#x00A9;2021 Nicholas Johnson, All rights reserved</p>
-      </footer>
+      <div>
+        <h4>Change your account settings</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_ManageNav" />
+            </div>
+        </div>
+        <div id="Logout">
+           <button id="logoutButton" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+        </div>
+      </div>
     </div>
+    <div class="col container-fluid">
+      <main role="main" class="pb-3">
+        @RenderBody()
+      </main>
+    </div>
+
+    <footer class="container-fluid text-center" >
+      <p>&#x00A9;2021 Nicholas Johnson, All rights reserved</p>
+    </footer>
   </div>
 </div>
-
+<script>
+  $("#logoutButton").click( function() {
+            $.ajax({
+                url: "/Account/Logout"
+            }).done(function(result) {
+                $("#Login").show();
+                $("#Logout").hide();
+            }).fail( function() {
+                alert("logout failed");
+            });
+       });
+</script>
 </body>
 </html>
 

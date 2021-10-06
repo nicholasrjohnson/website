@@ -5,6 +5,11 @@ namespace website.Models
 {
     public class ForgotPasswordModel
     {
+
+        public ForgotPasswordModel() {
+            Input = new InputModel();
+        }
+        
             [BindProperty]
         public InputModel Input { get; set; }
 
