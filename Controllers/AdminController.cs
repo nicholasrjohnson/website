@@ -7,6 +7,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Identity;
@@ -19,6 +20,7 @@ using website.Data;
 
 namespace website.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
        
@@ -219,7 +221,7 @@ namespace website.Controllers
             return RedirectToPage("./TwoFactorAuthentication");
         }
         
-        public async Task<IActionResult> DownloadPersonalDataAsync()
+        public async Task<IActionResult> DownloadPersonalData()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -625,7 +627,7 @@ namespace website.Controllers
             return RedirectToAction("GetShowRecovertyCodes", model);
         }
 
-        public async Task<IActionResult> GetPersonalData()
+        public async Task<IActionResult> PersonalData()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -670,7 +672,7 @@ namespace website.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> GetTwoFactorAuthentication()
+        public async Task<IActionResult> TwoFactorAuthentication()
         {
             TwoFactorAuthenticationModel model = new TwoFactorAuthenticationModel();
             var user = await _userManager.GetUserAsync(User);
@@ -687,7 +689,7 @@ namespace website.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> OnTwoFactorAuthenticationPost()
+        public async Task<IActionResult> OnTwoFactorAuthentication()
         {
             TwoFactorAuthenticationModel model = new TwoFactorAuthenticationModel();
             var user = await _userManager.GetUserAsync(User);

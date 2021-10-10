@@ -26,7 +26,7 @@
 	<!-- End Google Tag Manager (noscript) -->
 <div class="container-fluid">
   <div class="row">
-    <div class="col container-fluid">
+    <div class="col">
       <nav class="navbar navbar-expand-sm navbar-custom zone">
          <div class="navbar-header">
             <a class="navbar-brand linktext" rel="home" href="#">Nicholas R Johnson</a>
@@ -37,6 +37,7 @@
              <li class="nav-item"><a id="aboutIdTop" class="nav-link py-0" href="/Home/About">About</a></li>
              <li class="nav-item"><a id="projectsIdTop" class="nav-link py-0" href="/Home/Projects">Projects</a></li>
              <li class="nav-item"><a id="contactIdTop" class="nav-link py-0" href="/Home/Contact">Contact</a></li>
+             <li class="nav-item"><a id="innerIdTop" class="nav-link py-0" href="/InnerSanctum/InnerSanctumIndex">Inner</a></li>
            </ul>
            <ul class="nav bg-dark navbar-dark navbar-right">
            </ul>
@@ -46,18 +47,18 @@
   </div> 
 
   <div class="row">
-    <div class="col-sm-2 sidenav fullheight container-fluid text-center zone" style="margin-top:20px; padding:15px;">
+    <div class="col-sm-2 sidenav fullheight text-center zone" style="margin-top:20px; padding:15px;">
       <p><a id="homeIdSide" href="/Home/Index">Home</a></p>
       <p><a id="aboutIdSide" href="/Home/About">About</a></p>
       <p><a id="projectsIdSide" href="/Home/Projects">Projects</a></p>
       <p><a class="linktext" href="https://blog.nicholasrjohnson.com">Blog</a></p>
       <p><a class="linktext" href="/resources/NicholasRJohnsonResume.docx" download>Resume</a></p>
       <p><a id="contactIdSide" href="/Home/Contact">Contact</a></p>
-      <div class="container">
+      <div>
             @await Html.PartialAsync("~/Views/Shared/_LoginPartial.cshtml")
       </div>
     </div> 
-    <div class="col container-fluid">
+    <div class="col">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -68,6 +69,18 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready( function() {
+        var userAuthorizedLayout = @User.Identity.IsAuthenticated.ToString().ToLower();
+   
+        if(userAuthorizedLayout) {
+            $("#innerIdTop").show();
+        } else {
+            $("#innerTopId").hide();
+        }
+});
+</script>
 
 </body>
 </html>

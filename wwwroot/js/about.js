@@ -7,4 +7,6 @@ $(document).ready( function() {
     $("#projectsIdSide").css("color", "black"); 
     $("#contactIdTop").css("color", "black"); 
     $("#contactIdSide").css("color", "black"); 
+    $("#innerIdTop").css("color", "black");
+    $("#innerIdSide").css("color", "black");
 });

@@ -43,7 +43,7 @@ namespace website.Controllers
             _httpContextAccessor = httpContextAccessor;
         } 
 
-        public async Task<IActionResult> GetConfirmEmailChange(string userId, string email, string code)
+        public async Task<IActionResult> ConfirmEmailChange(string userId, string email, string code)
         {
             ConfirmEmailChangeModel model = new ConfirmEmailChangeModel();
 
