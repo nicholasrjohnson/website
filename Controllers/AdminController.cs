@@ -47,8 +47,8 @@ namespace website.Controllers
             _httpContextAccessor = httpContextAccessor;
         } 
 
-        public async Task<IActionResult> AdminIndex(AdminIndexModel model) {
-            model = new AdminIndexModel();
+        public async Task<IActionResult> AdminIndex() {
+            AdminIndexModel model = new AdminIndexModel();
             var user = await _userManager.GetUserAsync(User);
             
             model = await LoadAdminIndexAsync(user);
@@ -330,7 +330,6 @@ namespace website.Controllers
             return View("~/Views/Admin/ChangeEmail.cshtml", model);
         }
 
-        
         private async Task<AdminIndexModel> LoadAdminIndexAsync(ApplicationIdentityUser user)
         {
             AdminIndexModel model = new AdminIndexModel();
@@ -347,7 +346,6 @@ namespace website.Controllers
 
             return model;
         }
-
 
         public async Task<IActionResult> SaveAdminIndex(AdminIndexModel model)
         {  

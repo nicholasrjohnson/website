@@ -48,7 +48,7 @@ namespace website
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = new PathString("/Home/Index");
-                options.ReturnUrlParameter = new PathString("/InnerSanctum/InnerSanctumIndex");
+                options.ReturnUrlParameter = new PathString("/Admin/AdminIndex");
                 //other properties
             });
 
