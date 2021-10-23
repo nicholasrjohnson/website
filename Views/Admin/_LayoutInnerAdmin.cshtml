@@ -1,5 +1,5 @@
-﻿@model website.Models.AdminIndexModel
-@using website.Data
+﻿@using website.Data
+@using Microsoft.AspNetCore.Html;
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationIdentityUser> SignInManager
 
@@ -53,9 +53,10 @@
       <p><a class="linktext" href="https://blog.nicholasrjohnson.com">Blog</a></p>
       <p><a id="contactIdSide" href="/Home/Contact">Contact</a></p>
       <p><a id="innerIdSide" href="/InnerSanctum/InnerSanctumIndex">Inner</p>
+      <p><button id="logoutButton" class="nav-link btn btn-link text-dark">Click here to Logout</button></p>
     </div> 
-    <div class="col">
-      <main role="main" class="p-3">
+    <div class="col p-2">
+      <main role="main"class="p-3">
         @RenderBody()
       </main>
     </div>
@@ -64,16 +65,16 @@
       <div>
         <h4>Change your account settings</h4>
         <hr />
-          <ul class="nav nav-pills">
-          <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="/Admin/AdminIndex">Profile</a></li>
-          <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="/Admin/ChangeEmail">Email</a></li>
-          <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="/Admin/ChangePassword">Password</a></li>
+        <ul class="nav nav-pills">
+          <li class="nav-item">@Html.ActionLink("Profile","AdminIndex","Admin", new { model = new AdminIndexModel()}, new { @class = "nav-link", id = "profile" } )</li>
+          <li class="nav-item">@Html.ActionLink("Change Email", "ChangeEmail", "Admin", new { model = new ChangeEmailModel()}, new {@class = "nav-link", id="email" })</li>
+          <li class="nav-item">@Html.ActionLink("Change Password", "ChangePassword", "Admin", new { model = new ChangePasswordModel()}, new {@class = "nav-link", id="change-password"})</a></li>
           @if (hasExternalLogins)
           {
-            <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="/Admine/ExternalLogins">External logins</a></li>                   
+            <li id="external-logins" class="nav-item">@Html.ActionLink("External logins", "ExternalLogins", "Admin",  new { model = new ExternalLoginModel()}, new { @class = "nav-link", id = "external-login" })</li>                   
           }
-          <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="/Admin/TwoFactorAuthentication">Two-factor authentication</a></li>
-          <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="/Admin/PersonalData">Personal data</a></li>
+          <li class="nav-item">@Html.ActionLink("Two-factor authentication", "TwoFactorAuthentication", "Admin", new { model = new TwoFactorAuthenticationModel()}, new { @class = "nav-link", id = "two-factor" })</li>
+          <li class="nav-item">@Html.ActionLink("Person Data", "PersonalData", "Admin", new { model = new DeletePersonalDataModel()}, new { @class = "nav-link", id = "personal-data" })</li>
         </ul>
     </div>
   </div>
