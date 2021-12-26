@@ -258,9 +258,8 @@ namespace website.Controllers
             return model;
         }
 
-        public async Task<IActionResult> ChangeEmail()
+        public async Task<IActionResult> ChangeEmail(ChangeEmailModel model)
         {
-            ChangeEmailModel model = new ChangeEmailModel();
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -319,7 +318,7 @@ namespace website.Controllers
             var callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
-                values: new { area = "Identity", userId = userId, code = code },
+                values: new { userId = userId, code = code },
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
@@ -358,7 +357,7 @@ namespace website.Controllers
             if (!ModelState.IsValid)
             {
                 model = await LoadAdminIndexAsync(user);
-                return View(model);
+                return View("~/Views/Admin/AdminIndex.cshtml", model);
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
@@ -368,7 +367,7 @@ namespace website.Controllers
                 if (!setPhoneResult.Succeeded)
                 {
                     model.StatusMessage = "Unexpected error when trying to set phone number.";
-                    return View(model);
+                    return View("~/Views/Admin/AdminIndex.cshtml", model);
                 }
             }
 

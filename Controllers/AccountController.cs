@@ -43,6 +43,26 @@ namespace website.Controllers
             _httpContextAccessor = httpContextAccessor;
         } 
 
+        public async Task<IActionResult> ConfirmEmail(string userId, string code) {
+            ConfirmEmailModel model = new ConfirmEmailModel();
+            if(userId == null || code == null) {
+                return View("~/Home/Index.cshtml");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{userId}'.");
+            }
+
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+
+            var result = await _userManager.ConfirmEmailAsync(user, code);                        
+        
+
+            return View(result.Succeeded ? "~/Account/ConfirmEmail.cshmtl" : "~/Home/Error.cshtml");
+        }
+
         public async Task<IActionResult> ConfirmEmailChange(string userId, string email, string code)
         {
             ConfirmEmailChangeModel model = new ConfirmEmailChangeModel();
